@@ -588,7 +588,7 @@ extension Path {
 extension Path {
   public static func glob(_ pattern: String) -> [Path] {
     var gt = glob_t()
-    let cPattern = strdup(pattern)
+    let cPattern = strdup(pattern)!
     defer {
       globfree(&gt)
       free(cPattern)
@@ -619,8 +619,8 @@ extension Path {
   }
 
   public func match(_ pattern: String) -> Bool {
-    let cPattern = strdup(pattern)
-    let cPath = strdup(path)
+    let cPattern = strdup(pattern)!
+    let cPath = strdup(path)!
     defer {
       free(cPattern)
       free(cPath)
